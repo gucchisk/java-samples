@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
 </head>
 <body>
-<h1 th:text="${message}"></h1>
-<span><a href="/?lang=en">en</a></span><span> </span><span><a href="/?lang=ja">ja</a></span>
+<div class="content">
+    <div class="bar">
+            <div class="lang_menu">
+            <a href="#" th:text="#{language}"></a>
+            <ul class="lang_lists">
+                <li class="lang_list" th:classappend="${lang=='ja'} ? ' selected' : ''"><a href="/?lang=ja">日本語</a></li>
+                <li class="lang_list" th:classappend="${lang=='en'} ? ' selected' : ''"><a href="/?lang=en">English</a></li>
+            </ul>
+            </div>
+    </div>
+    <h1 th:text="${message}"></h1>
+</div>
 </body>
 </html>
